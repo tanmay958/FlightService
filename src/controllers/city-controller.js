@@ -73,10 +73,31 @@ const get = async (req,res)=>{
             err : {},
 
         });
-        console.log(" ia m mkdi");
+      
     } 
     catch (error) {
-        console.log("i an why");
+       
+        return res.status(501).json({
+            data : {},
+            success : false,
+            message : "city not there",
+            err :  error,
+        })
+    }
+}
+const getAll =  async (req,res)=>{
+    try{
+        const cities  = await  cityService.getAll(req.query);
+        return res.status(201).json({
+            data:cities,
+            success : true,
+            message : "all cities fetched",
+            error :  {}
+        })
+
+    }
+    catch(error)
+    {
         return res.status(501).json({
             data : {},
             success : false,
@@ -90,5 +111,6 @@ module.exports = {
     create,
     destroy,
     get,
-    update
+    update,
+    getAll
 }
