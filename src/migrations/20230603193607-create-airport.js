@@ -16,13 +16,13 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      cityId: {
+      CityId: {
         type: Sequelize.INTEGER,
         onDelete:"CASCADE",
         references:{
           model : 'Cities',
           key : 'id',
-          as : 'cityId'
+          as : 'CityId'
         },
         allowNull : false
       },
