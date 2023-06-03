@@ -13,9 +13,9 @@ class CityRepository{
             throw{ error};
         }
     }
-    async deleteCity({cityId}){
+    async deleteCity(cityId){
         try{
-            await City.destror({
+            await City.destroy({
                 where  :{
                     id :  cityId,
                 }
@@ -29,18 +29,28 @@ class CityRepository{
         }
     }
 
-    async updateCity({id,name}){
-        await City.update({name:name},{
+    async updateCity(id,data){
+        try{
+        const  city  = await City.update(data,{
             where : {
                 id : id,
             }
-        })
+           })
+        return city;
+    }
+    catch(error)
+    {
+        console.log("something went wronng in the service layer");
+        return {error};
+    }
 
     }
-    async getCity({cityId}){
+
+    async getCity(cityId){
         try{
             const city = await City.findByPk(cityId);
             return city;
+
         }
         catch(error)
         {

@@ -13,7 +13,7 @@ const create =async (req,res)=>{
         });
         
     } catch (error) {
-        console.log(error);
+     
         return res.status(501).json({
             data : {},
             success : false,
@@ -27,11 +27,11 @@ const create =async (req,res)=>{
 const destroy = async (req,res)=>{
     try {
         const response =  await cityService.deleteCity(req.params.id);
-        return res.status(501).json({
+        return res.status(201).json({
             data : {},
             success : response,
             message : "city deleted",
-            err :  error,
+            err :  {},
         })
     } catch (error) {
         return res.status(501).json({
@@ -46,30 +46,37 @@ const destroy = async (req,res)=>{
 //patch /city/:id ->req.body
 const update = async (req,res)=>{
     try {
-        const city = await cityService.updateCity(req.params.id);
-        res.status(201).json({
+        const city = await cityService.updateCity(req.params.id,req.body);
+        
+       
+        return res.status(201).json({
             data :  city,
             status :  true,
-            err : error,
+            err : {},
 
         }); 
         
     } catch (error) {
-        
+        console.log("problem in service layer");
+        throw {error};
     }
     
 }
 //get -/city/id
 const get = async (req,res)=>{
     try {
-        const city = await cityService.getCity(req.params.id,req.body);
-        res.status(201).json({
+        const city = await cityService.getCity(req.params.id);
+        console.log(city);
+        return res.status(201).json({
             data :  city,
             status :  true,
-            err : error,
+            err : {},
 
         });
-    } catch (error) {
+        console.log(" ia m mkdi");
+    } 
+    catch (error) {
+        console.log("i an why");
         return res.status(501).json({
             data : {},
             success : false,
@@ -79,7 +86,7 @@ const get = async (req,res)=>{
     }
 }
 
-module.export = {
+module.exports = {
     create,
     destroy,
     get,
