@@ -8,6 +8,8 @@ const FlightController  =  require("../../controllers/flight-controller");
 
 const AirportController = require("../../controllers/airport-controller");
 
+const {FlightMiddleware} = require("../../middlewares/index");
+
 
 const router = express.Router();
 
@@ -28,7 +30,7 @@ router.post('/airport',AirportController.create);
 
 
 router.get('/flights',FlightController.getFlights);
-router.post('/flights',FlightController.createFlight);
+router.post('/flights',FlightMiddleware.validateCreateFlight,FlightController.createFlight);
 
 // quert param gets with the get request 
 

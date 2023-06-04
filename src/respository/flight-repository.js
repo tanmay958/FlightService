@@ -39,6 +39,7 @@ class FlightRepository{
         } catch (error) {
             console.log("sonething went wrong in the repository layer");
             console.log(error);
+            console.log(error);
             throw {error};
 
             

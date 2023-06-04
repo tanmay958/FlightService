@@ -1,5 +1,6 @@
 const {FlightService} = require("../services/index");
 
+
 const flightService =  new FlightService();
 const createFlight =  async (req,res) =>{
     try{
