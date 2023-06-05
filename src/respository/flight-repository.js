@@ -45,6 +45,21 @@ class FlightRepository{
             
         }
     }
+    async getFlight(id)
+    {   try{
+        const flight =  await flights.findOne({
+            where :{
+                id: id
+            }
+        })
+        return flight;
+    }
+        catch(error)
+        {
+            console.log("something went wrong in the repo layer");
+            throw {error};
+        }
+    }
     async getFlights(filter)
     {
         try{
@@ -64,5 +79,24 @@ class FlightRepository{
             throw {error};
         }
     }
+    async updateAfterBooking(id,seat){
+        try{
+            const flight =  await flights.findOne({
+                where :{
+                    id:id,
+                }
+            })
+            flight.totalSeats =  seat ;
+            flight.save();
+            return flight;
+        }
+        catch(error)
+    {
+        console.log("something went wrong in the repo layer");
+        throw {error};
+    }
+    }
+    
+
 }
 module.exports = FlightRepository;

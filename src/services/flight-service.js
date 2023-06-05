@@ -30,6 +30,30 @@ class FlightService{
         }
     }
 
+    async getFlight(id){
+        try {
+            const response =  await flightRepository.getFlight(id);
+            return response;
+        } catch (error) {
+            
+            console.log("somthing happen  in the service layer");
+            throw {error};
+        }
+    }
+
+        async updateAfterBooking(id,seat)
+        {
+            try {
+                const response = await flightRepository.updateAfterBooking(id,seat);
+                return response ;
+
+            }
+            catch(error)
+            {
+                console.log("something went wrong inthe service layer");
+                throw {error};
+            }
+        }
 
    
 }

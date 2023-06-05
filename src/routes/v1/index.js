@@ -32,6 +32,9 @@ router.post('/airport',AirportController.create);
 router.get('/flights',FlightController.getFlights);
 router.post('/flights',FlightMiddleware.validateCreateFlight,FlightController.createFlight);
 
+router.get('/flights/:id',FlightController.getFlight);
+router.patch('/flights/:id',FlightController.updateAfterBooking);
+
 // quert param gets with the get request 
 
 module.exports = router;
